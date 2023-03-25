@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+
+    <table>
+      <thead>
+        <form action="/" method="get">
+          <input type="text" name="searchFor"></input>
+          <input type="submit" value="Search">
+        </form>
+
+        <tr>
+          <th>
+            <a href="/?sortBy=ID">ID</a>
+          </th>
+          <th>
+            <a href="/?sortBy=Username">Username</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each users}}
+        <tr>
+          <td>{{ID}}</td>
+          <td>{{Username}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    <div class="pagination-menu" style="display: flex; align-items: center">
+      <a href="/?page=0&sortBy={{sortBy}}&searchFor={{searchFor}}">
+        <button {{#unless canPreviousPage}} disabled {{/unless}}>First Page</button>     
+      </a>
+
+      <a style="margin: 0px 10px;" href="/?page={{previousPage}}&sortBy={{sortBy}}&searchFor={{searchFor}}">
+        <button {{#unless canPreviousPage}} disabled {{/unless}}>←</button>
+      </a>
+
+      {{siema}}
+      <div>{{pageNumDisplay}} / {{pagesCount}}</div>     
+
+      <a style="margin: 0px 10px;" href="/?page={{nextPage}}&sortBy={{sortBy}}&searchFor={{searchFor}}">
+        <button {{#unless canNextPage}} disabled {{/unless}}>→</button>
+      </a>
+
+      <a href="/?page={{pagesCount}}&sortBy={{sortBy}}&searchFor={{searchFor}}">
+        <button {{#unless canNextPage}} disabled {{/unless}}>Last Page</button>     
+      </a>
+    </div>
+  </body>
+</html>
